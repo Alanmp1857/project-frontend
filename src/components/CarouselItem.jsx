@@ -1,5 +1,7 @@
 import Carousel from 'react-bootstrap/Carousel';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import { Link } from "react-router-dom"
+import Button from 'react-bootstrap/Button';
 
 function CarouselItem() {
     return (
@@ -12,7 +14,7 @@ function CarouselItem() {
                 />
                 <Carousel.Caption>
                     <h3>Brain Tumor Detection</h3>
-                    <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
+                    <Link to="/BrainTumor"><Button>Try Now</Button></Link>
                 </Carousel.Caption>
             </Carousel.Item>
             <Carousel.Item>
@@ -23,7 +25,7 @@ function CarouselItem() {
                 />
                 <Carousel.Caption>
                     <h3>Alzheimer's Detection</h3>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                    <Link to="/Alzheimer"><Button>Try Now</Button></Link>
                 </Carousel.Caption>
             </Carousel.Item>
         </Carousel>

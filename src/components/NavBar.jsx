@@ -21,8 +21,8 @@ function NavBar() {
                                 <Nav.Link className="text-white" href="/Alzheimer">Alzheimer Detection</Nav.Link>
                             </div>
                             <div style={{ marginLeft: '650px' }}>
-                                <Button style={{ marginRight: '5px' }} variant="outline-success">SignIn</Button>
-                                <Button variant="outline-success">SignUp</Button>
+                                <Button style={{ marginRight: '5px' }} variant="outline-primary"><a href="/SignIn">SignIn</a></Button>
+                                <Button variant="outline-primary">SignUp</Button>
                             </div>
                         </Nav>
                     </div>

@@ -1,6 +1,7 @@
 import { useEffect } from 'react'
-import NavBar from './components/NavBar'
+// import NavBar from './components/NavBar'
 import CarouselItem from './components/CarouselItem'
+// import { Outlet } from 'react-router-dom';
 
 function App() {
   useEffect(() => {
@@ -13,7 +14,6 @@ function App() {
 
   return (
     <div>
-      <NavBar />
       <CarouselItem />
     </div>
   )

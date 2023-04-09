@@ -5,13 +5,14 @@ import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Button from 'react-bootstrap/Button';
 import 'bootstrap/dist/js/bootstrap.min.js';
+import { Link } from 'react-router-dom';
 // import BrainTumor from './BrainTumor'
 
 function NavBar() {
     return (
         <Navbar bg="dark" expand="lg" sticky="top">
             <Container fluid>
-                <Navbar.Brand className="text-white" href="#">Navbar</Navbar.Brand>
+                <Link to="/"> <Navbar.Brand className="text-white">Navbar</Navbar.Brand></Link>
                 <Navbar.Toggle aria-controls="navbarScroll" />
                 <Navbar.Collapse id="navbarScroll">
                     <div style={{ display: 'flex', justifyContent: 'space-between' }}>
@@ -20,9 +21,9 @@ function NavBar() {
                                 <Nav.Link className="text-white" href="/BrainTumor">Brain Tumor Detection</Nav.Link>
                                 <Nav.Link className="text-white" href="/Alzheimer">Alzheimer Detection</Nav.Link>
                             </div>
-                            <div style={{ marginLeft: '650px' }}>
+                            <div style={{ marginLeft: '920px' }}>
                                 <Button style={{ marginRight: '5px' }} variant="outline-primary"><a href="/SignIn">SignIn</a></Button>
-                                <Button variant="outline-primary">SignUp</Button>
+                                <Button variant="outline-primary"><Link to="/SignUp">SignUp</Link></Button>
                             </div>
                         </Nav>
                     </div>

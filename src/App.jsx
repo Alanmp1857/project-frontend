@@ -4,18 +4,16 @@ import CarouselItem from './components/CarouselItem'
 // import { Outlet } from 'react-router-dom';
 
 function App() {
-  useEffect(() => {
-    BrainTumorLink();
-  }, []);
+  // useEffect(() => {
+  //   BrainTumorLink();
+  // }, []);
 
-  const BrainTumorLink = async () => {
-    const data = await fetch('localhost:8000')
-  }
+  // const BrainTumorLink = async () => {
+  //   const data = await fetch('localhost:8000')
+  // }
 
   return (
-    <div>
-      <CarouselItem />
-    </div>
+    <CarouselItem />
   )
 }
 

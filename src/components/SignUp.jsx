@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Form, Button } from 'react-bootstrap';
+// import { useAuth0 } from '@auth0/auth0-react'
 
 const SignUp = () => {
     const [name, setName] = useState('');
@@ -7,9 +8,12 @@ const SignUp = () => {
     const [password, setPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
 
+    // const { loginWithPopup, loginWithRedirect, logout, user, isAuthenticated, getAccessTokenSilently } = useAuth0()
+
     const handleSubmit = (event) => {
         event.preventDefault();
-        console.log(`Name: ${name} Email: ${email} Password: ${password} Confirm Password: ${confirmPassword}`);
+        // console.log(`Name: ${name} Email: ${email} Password: ${password} Confirm Password: ${confirmPassword}`);
+        // loginWithPopup()
     };
 
     return (

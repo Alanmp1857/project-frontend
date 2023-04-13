@@ -22,6 +22,24 @@ const BrainTumor = () => {
         setFormData({ ...formData, file: event.target.files[0] });
     };
 
+    // const handleSubmit = async (event) => {
+    //     event.preventDefault();
+    //     setIsLoading(true);
+    //     const formDataObj = new FormData();
+    //     formDataObj.append('file', formData.file);
+    //     formDataObj.append('firstName', formData.firstName);
+    //     formDataObj.append('lastName', formData.lastName);
+    //     formDataObj.append('age', formData.age);
+    //     try {
+    //         const response = await axios.post('http://localhost:8000/braintumor/predict', formDataObj);
+    //         setResult(response.data);
+    //     } catch (error) {
+    //         console.error(error);
+    //     } finally {
+    //         setIsLoading(false);
+    //     }
+    // };
+
     const handleSubmit = async (event) => {
         event.preventDefault();
         setIsLoading(true);
@@ -32,13 +50,34 @@ const BrainTumor = () => {
         formDataObj.append('age', formData.age);
         try {
             const response = await axios.post('http://localhost:8000/braintumor/predict', formDataObj);
-            setResult(response.data);
+            const { class: resultClass, confidence, image } = response.data;
+            const imageUrl = `data:image/jpg;base64,${image}`;
+            console.log(imageUrl, formData.file)
+            const newWindow = window.open('', '_blank', 'width=600,height=600');
+            newWindow.document.write(`
+            <h1>Result</h1>
+            <p>Class: ${resultClass}</p>
+            <p>Confidence: ${confidence}</p>
+            <img
+             src="${URL.createObjectURL(formData.file)}"
+             alt="Selected file preview"
+            />
+        `);
+            newWindow.document.close();
         } catch (error) {
             console.error(error);
         } finally {
             setIsLoading(false);
         }
     };
+
+    function test() {
+        url = "https://www.google.de//images/branding/googlelogo/2x/googlelogo_color_272x92dp.png";
+        img = '<img src="' + url + '">';
+        popup = window.open();
+        popup.document.write(img);
+        popup.print();
+    }
 
     return (
         <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '53vh' }}>
@@ -67,12 +106,12 @@ const BrainTumor = () => {
                     {isLoading ? 'Loading...' : 'Submit'}
                 </Button>
 
-                {result && (
+                {/* {result && (
                     <div>
                         <p>Class: {result.class}</p>
                         <p>Confidence: {result.confidence}</p>
                     </div>
-                )}
+                )} */}
             </Form>
         </div>
     );

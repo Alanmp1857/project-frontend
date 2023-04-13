@@ -7,8 +7,9 @@ import Button from 'react-bootstrap/Button';
 import 'bootstrap/dist/js/bootstrap.min.js';
 import { Link } from 'react-router-dom';
 // import BrainTumor from './BrainTumor'
+import { useAuth0 } from '@auth0/auth0-react'
 
-function NavBar() {
+function NavBar({ loginWithPopup, logout }) {
     return (
         <Navbar bg="dark" expand="lg" sticky="top">
             <Container fluid>
@@ -22,8 +23,9 @@ function NavBar() {
                                 <Nav.Link className="text-white" href="/Alzheimer">Alzheimer Detection</Nav.Link>
                             </div>
                             <div style={{ marginLeft: '920px' }}>
-                                <Button style={{ marginRight: '5px' }} variant="outline-primary"><a href="/SignIn">SignIn</a></Button>
-                                <Button variant="outline-primary"><Link to="/SignUp">SignUp</Link></Button>
+                                <Button style={{ marginRight: '5px' }} variant="outline-primary" onClick={loginWithPopup}>SignIn</Button>
+                                <Button style={{ marginRight: '5px' }} variant="outline-primary" onClick={logout}>Logout</Button>
+                                {/* <Button variant="outline-primary" onClick={loginWithPopup}>SignUp</Button> */}
                             </div>
                         </Nav>
                     </div>

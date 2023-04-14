@@ -7,7 +7,7 @@ import image3 from '../assets/3.jpg';
 
 function CarouselItem() {
     return (
-        <div style={{ margin: 'auto', width: '50%', height: '50%' }}>
+        <div style={{ margin: 'auto', width: '50%', height: '50%', paddingTop: "25px" }}>
             <Carousel>
                 <Carousel.Item>
                     <img

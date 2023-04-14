@@ -13,7 +13,7 @@ function NavBar({ loginWithPopup, logout }) {
     return (
         <Navbar bg="dark" expand="lg" sticky="top">
             <Container fluid>
-                <Link to="/"> <Navbar.Brand className="text-white">Navbar</Navbar.Brand></Link>
+                <Link style={{ textDecoration: "none" }} to="/"> <Navbar.Brand className="text-white">NeuraLink</Navbar.Brand></Link>
                 <Navbar.Toggle aria-controls="navbarScroll" />
                 <Navbar.Collapse id="navbarScroll">
                     <div style={{ display: 'flex', justifyContent: 'space-between' }}>
@@ -22,7 +22,7 @@ function NavBar({ loginWithPopup, logout }) {
                                 <Nav.Link className="text-white" href="/BrainTumor">Brain Tumor Detection</Nav.Link>
                                 <Nav.Link className="text-white" href="/Alzheimer">Alzheimer Detection</Nav.Link>
                             </div>
-                            <div style={{ marginLeft: '920px' }}>
+                            <div style={{ marginLeft: '890px' }}>
                                 <Button style={{ marginRight: '5px' }} variant="outline-primary" onClick={loginWithPopup}>SignIn</Button>
                                 <Button style={{ marginRight: '5px' }} variant="outline-primary" onClick={logout}>Logout</Button>
                                 {/* <Button variant="outline-primary" onClick={loginWithPopup}>SignUp</Button> */}

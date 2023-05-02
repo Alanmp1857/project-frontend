@@ -1,0 +1,65 @@
+/* Set base styles for body and page container */
+body {
+    margin: 0;
+    padding: 0;
+    overflow-y: auto;
+}
+
+.page-container {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.content-wrap {
+    flex: 1;
+}
+
+.NavLink-gap {
+    margin-left: 20px;
+}
+
+/* Styles for small screens */
+@media screen and (max-width: 768px) {
+
+    /* Center text in footer */
+    footer.text-center {
+        text-align: center;
+    }
+
+    /* Adjust font size and margin for footer headings */
+    footer h6 {
+        font-size: 1.2rem;
+        margin-bottom: 1rem;
+    }
+
+    /* Adjust margin for footer links */
+    footer p {
+        margin-bottom: 0.5rem;
+    }
+
+    /* Reduce padding on footer section */
+    footer section {
+        padding: 1rem;
+    }
+
+}
+
+/* Styles for large screens */
+@media screen and (min-width: 769px) {
+
+    /* Increase font size for footer headings */
+    footer h6 {
+        font-size: 1.5rem;
+    }
+
+    /* Increase margin for footer links */
+    footer p {
+        margin-bottom: 1rem;
+    }
+
+    /* Add more padding to footer section */
+    footer section {
+        padding: 2rem;
+    }
+}

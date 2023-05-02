@@ -3,6 +3,7 @@ import { createBrowserRouter, RouterProvider, Outlet } from "react-router-dom";
 import ReactDOM from 'react-dom/client'
 import App from './App'
 import './index.css'
+import './Layout.css'
 import BrainTumor from './components/BrainTumor';
 import Alzheimer from './components/Alzheimer';
 import SignIn from './components/SignIn';
@@ -18,7 +19,7 @@ function Layout() {
   const { loginWithPopup, loginWithRedirect, logout, user, isAuthenticated, getAccessTokenSilently } = useAuth0()
   return (
     <>
-      <NavBar loginWithPopup={loginWithPopup} logout={logout} />
+      <NavBar loginWithPopup={loginWithPopup} logout={logout} isAuthenticated={isAuthenticated} user={user} />
       <Outlet />
       <Footer />
     </>
@@ -64,11 +65,12 @@ ReactDOM.createRoot(document.getElementById('root')).render(
     <Auth0Provider
       domain="braintumor-alzheimer-app.us.auth0.com"
       clientId="HDPOQaLAM2BT664CPwYFX2njynVyWl9g"
-      responseType='code'
       authorizationParams={{
         redirect_uri: window.location.origin,
-        scope: "openid profile email"
+        scope: "openid profile email",
+        audience: "https://bt-api.com"
       }}
+      responseType="code"
     >
       <RouterProvider router={appRouter}>
         <Layout />

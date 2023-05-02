@@ -1,6 +1,8 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Form, Button } from 'react-bootstrap';
 import axios from 'axios';
+import FileBase64 from 'react-file-base64'
+import { useAuth0 } from '@auth0/auth0-react'
 
 const BrainTumor = () => {
     const [formData, setFormData] = useState({
@@ -10,19 +12,100 @@ const BrainTumor = () => {
         file: null,
     });
 
+    const [base64Image, setBase64Image] = useState(null);
+
+    useEffect(() => {
+        const handleFileChange = async (image) => {
+            // const formdata = new FormData();
+            // formdata.append('file', event.target.files[0]);
+            // setFormData({ ...formData, file: event.target.files[0] });
+            // const response = await axios.post(`http://localhost:3000/uploadImage`, formdata, {
+            //     headers: {
+            //         'Content-Type': 'multipart/form-data',
+            //         'file': formData
+            //     }
+            // })
+            // console.log(response, event.target.files[0], formData)
+            console.log(image);
+            const token = await getAccessTokenSilently();
+            const resp = await axios.post(`http://localhost:3000/user/`, { username: user.nickname, image: image }, {
+                headers: {
+                    Authorization: `Bearer ${token}`
+                }
+            })
+            console.log(resp.data)
+        };
+        if (base64Image != null) handleFileChange(base64Image);
+        console.log(base64Image)
+    }, [base64Image])
+
+
+    const { user, getAccessTokenSilently } = useAuth0()
+
     const [isLoading, setIsLoading] = useState(false);
-    const [result, setResult] = useState(null);
 
     const handleInputChange = (event) => {
         const { name, value } = event.target;
         setFormData({ ...formData, [name]: value });
     };
 
-    const handleFileChange = (event) => {
+    const handleFile = async (event) => {
+        const formdata = new FormData();
+        formdata.append('file', event.target.files[0]);
         setFormData({ ...formData, file: event.target.files[0] });
-    };
+        const file = event.target.files[0];
+        const reader = new FileReader();
+        reader.readAsDataURL(file);
+        reader.onloadend = () => {
+            setBase64Image(reader.result);
+        };
+        console.log(event.target.files[0], formData)
+    }
 
     const handleSubmit = async (event) => {
+        event.preventDefault();
+        setIsLoading(true);
+        try {
+            const formDataObj = new FormData();
+            formDataObj.append('file', formData.file);
+            formDataObj.append('firstName', formData.firstName);
+            formDataObj.append('lastName', formData.lastName);
+            formDataObj.append('age', formData.age);
+            const token = await getAccessTokenSilently();
+            const resp = await axios.post('http://localhost:3000/user', { username: user.nickname, firstname: formData.firstName, lastname: formData.lastName, age: formData.age }, {
+                headers: {
+                    Authorization: `Bearer ${token}`
+                }
+            })
+            console.log(resp.data);
+            const response = await axios.post('http://localhost:8000/braintumor/predict', formDataObj);
+
+            const { class: resultClass, confidence, image } = response.data;
+            const imageUrl = `data:image/jpg;base64,${image}`;
+
+            const newWindow = window.open('', '_blank', 'width=600,height=600');
+            newWindow.document.write(`
+            <h1>Result</h1>
+            <p>Name: ${formData.firstName} ${formData.lastName}</p>
+            <p>Age: ${formData.age}</p>
+            <p>Tumor Present: ${(resultClass === 'no_tumor') ? 'No' : 'Yes'}</p>
+            <p>Class: ${resultClass}</p>
+            <p>Confidence: ${(confidence * 100).toFixed(2)}%</p>
+            <img
+                src="${URL.createObjectURL(formData.file)}"
+                alt="Selected file preview"
+            />
+          `);
+            // newWindow.print();
+            newWindow.document.close();
+        } catch (error) {
+            console.error(error);
+        } finally {
+            setIsLoading(false);
+        }
+    };
+
+    const handleSubmitAndPrint = async (event) => {
         event.preventDefault();
         setIsLoading(true);
         try {
@@ -50,6 +133,13 @@ const BrainTumor = () => {
                 alt="Selected file preview"
             />
           `);
+            newWindow.onload = () => {
+                setTimeout(() => {
+                    newWindow.print();
+                    newWindow.close();
+                }, 1000); // delay the print operation by 1 second
+            };
+
             newWindow.document.close();
         } catch (error) {
             console.error(error);
@@ -58,14 +148,6 @@ const BrainTumor = () => {
         }
     };
 
-
-    function test() {
-        url = "https://www.google.de//images/branding/googlelogo/2x/googlelogo_color_272x92dp.png";
-        img = '<img src="' + url + '">';
-        popup = window.open();
-        popup.document.write(img);
-        popup.print();
-    }
 
     return (
         <div style={{
@@ -87,7 +169,8 @@ const BrainTumor = () => {
 
                 <Form.Group className="mb-2" controlId="formImage">
                     <Form.Label style={{ color: "white" }}>Image</Form.Label>
-                    <Form.Control type="file" onChange={handleFileChange} />
+                    {/* <FileBase64 type='file' value={formData.file} multiple={false} onDone={(base64) => handleFileChange({ image: base64 })} /> */}
+                    <Form.Control type="file" onChange={handleFile} />
                 </Form.Group>
 
                 <Form.Group className="mb-2" controlId="formAge">
@@ -95,8 +178,12 @@ const BrainTumor = () => {
                     <Form.Control type="number" placeholder="Enter age" name="age" value={formData.age} onChange={handleInputChange} />
                 </Form.Group>
 
-                <Button className='mb-2' variant="primary" type="submit" disabled={isLoading}>
-                    {isLoading ? 'Loading...' : 'Submit'}
+                <Button className='m-2' variant="primary" type="submit">
+                    Submit
+                </Button>
+
+                <Button className='m-2' variant="primary" type="submit" onClick={handleSubmitAndPrint}>
+                    Submit and Print
                 </Button>
 
                 {/* {result && (

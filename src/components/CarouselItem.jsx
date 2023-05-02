@@ -7,7 +7,7 @@ import image3 from '../assets/3.jpg';
 
 function CarouselItem() {
     return (
-        <div style={{ margin: 'auto', width: '50%', height: '50%', paddingTop: "25px" }}>
+        <div style={{ margin: 'auto', width: '100%', height: '100%' }}>
             <Carousel>
                 <Carousel.Item>
                     <img
@@ -32,7 +32,7 @@ function CarouselItem() {
                     </Carousel.Caption>
                 </Carousel.Item>
             </Carousel>
-        </div>
+        </div >
     );
 }
 

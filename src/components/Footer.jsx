@@ -2,73 +2,61 @@ import React from 'react';
 
 const Footer = () => {
     return (
-        <div style={{ bottom: 0, width: "100%" }}>
-            <footer className="text-center text-lg-start bg-light text-muted footer" style={{ paddingTop: '2px' }} >
-
-
-                <section className="">
-                    <div className="container text-center text-md-start mt-5">
-
-                        <div className="row mt-3">
-
-                            <div className="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4">
-
-                                <h6 className="text-uppercase fw-bold mb-4">
-                                    <i className="fas fa-gem me-3"></i>NeuraLink
-                                </h6>
-                                <p>
+        <div>
+            <div className="blockcode" style={{ opacity: '0.5', backgroundColor: 'black' }} >
+                <footer className="page-footer shadow">
+                    <div className="d-flex flex-column mx-auto py-5" style={{ width: "80%" }}>
+                        <div className="d-flex flex-wrap justify-content-between">
+                            <div>
+                                <a href="/#" className="d-flex align-items-center p-0 text-white">
+                                    <span className="ms-3 h5 font-weight-bold">NeuraLink</span>
+                                </a>
+                                <p className="my-3" style={{ width: "250px", color: "white" }}>
                                     Here you can check if you have Brain Tumor or Alzheimer disease☠️
                                 </p>
                             </div>
-
-
-
-                            <div className="col-md-2 col-lg-2 col-xl-2 mx-auto mb-4">
-
-                                <h6 className="text-uppercase fw-bold mb-4">
-                                    Products
-                                </h6>
-                                <p>
-                                    <a href="#!" className="text-reset">Brain Tumor Detection</a>
-                                </p>
-                                <p>
-                                    <a href="#!" className="text-reset">Alzheimer Detection</a>
-                                </p>
+                            <div>
+                                <p className="h5 mb-4" style={{ fontWeight: "600", color: "white" }}>Devwares</p>
+                                <ul className="p-0" style={{ listStyle: "none", cursor: "pointer" }}>
+                                    <li className="my-2">
+                                        <a className="text-white" href="/">About Us</a>
+                                    </li>
+                                    <li className="my-2">
+                                        <a className="text-white" href="/">Contact</a>
+                                    </li>
+                                </ul>
                             </div>
-
-
-
-                            <div className="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4">
-
-                                <h6 className="text-uppercase fw-bold mb-4">
-                                    Useful links
-                                </h6>
-                                <p>
-                                    <a href="#!" className="text-reset">Pricing</a>
-                                </p>
-                                <p>
-                                    <a href="#!" className="text-reset">Settings</a>
-                                </p>
-
+                            <div>
+                                <p className="h5 mb-4" style={{ fontWeight: "600", color: "white" }}>Help</p>
+                                <ul className="p-0" style={{ listStyle: "none", cursor: "pointer" }}>
+                                    <li className="my-2">
+                                        <a className="text-white" href="/">Sign Up</a>
+                                    </li>
+                                    <li className="my-2">
+                                        <a className="text-white" href="/">Sign In</a>
+                                    </li>
+                                </ul>
                             </div>
-                            <div className="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4">
-
-                                <h6 className="text-uppercase fw-bold mb-4">Contact</h6>
-                                <p><i className="fas fa-home me-3"></i> San Pada, Mumbai </p>
-                                <p>
-                                    <i className="fas fa-envelope me-3"></i>
-                                    tumorwala@gmail.com
-                                </p>
+                            <div>
+                                <p className="h5 mb-4" style={{ fontWeight: "600", color: "white" }}>Help</p>
+                                <ul className="p-0" style={{ listStyle: "none", cursor: "pointer" }}>
+                                    <li className="my-2">
+                                        <a className="text-white" href="/">Sign Up</a>
+                                    </li>
+                                    <li className="my-2">
+                                        <a className="text-white" href="/">Sign In</a>
+                                    </li>
+                                </ul>
                             </div>
-
                         </div>
-
+                        <div className="text-center mt-4">
+                            <small style={{ color: "white" }}>&copy; NeuraLink, 2023. All rights reserved.</small>
+                        </div>
                     </div>
-                </section>
-            </footer>
-
+                </footer>
+            </div>
         </div>
-    )
+    );
 }
 
 export default Footer;

@@ -1,5 +1,5 @@
 import React from 'react'
-import { createBrowserRouter, RouterProvider, Outlet } from "react-router-dom";
+import { createBrowserRouter, RouterProvider, Outlet, useLocation } from "react-router-dom";
 import ReactDOM from 'react-dom/client'
 import App from './App'
 import './index.css'
@@ -13,16 +13,39 @@ import Footer from './components/Footer';
 import PredictionBT from './components/PredictionBT';
 import { Auth0Provider } from '@auth0/auth0-react'
 import { useAuth0 } from '@auth0/auth0-react'
+import image6 from './assets/6.png';
+import image5 from './assets/5.webp';
+import image7 from './assets/7.jpg';
+import image8 from './assets/8.jpg';
 
 
 function Layout() {
+  const location = useLocation();
+  // console.log(location)
   const { loginWithPopup, loginWithRedirect, logout, user, isAuthenticated, getAccessTokenSilently } = useAuth0()
+  let image;
+  if (location.pathname === '/') {
+    image = image6;
+  }
+  else if (location.pathname === '/Braintumor') {
+    image = image8;
+  }
+  else if (location.pathname === '/Alzheimer') {
+    image = image7;
+  }
+  else {
+    image = image8;
+  }
+
   return (
-    <>
+    <div id='page' style={{ backgroundImage: `url(${image})`, height: 'auto', backgroundRepeat: 'no-repeat', backgroundSize: 'cover' }}>
       <NavBar loginWithPopup={loginWithPopup} logout={logout} isAuthenticated={isAuthenticated} user={user} />
-      <Outlet />
+      <div style={{ height: '70%', width: 'auto' }}>
+        <Outlet />
+      </div>
       <Footer />
-    </>
+      {/* <Footer bgColor={location.pathname === '/' ? 'transparent' : 'black'} /> */}
+    </div>
   )
 }
 

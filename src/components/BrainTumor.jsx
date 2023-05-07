@@ -3,6 +3,8 @@ import { Form, Button } from 'react-bootstrap';
 import axios from 'axios';
 import FileBase64 from 'react-file-base64'
 import { useAuth0 } from '@auth0/auth0-react'
+import Footer from './Footer';
+import image8 from '../assets/8.jpg';
 
 const BrainTumor = () => {
     const [formData, setFormData] = useState({
@@ -150,50 +152,45 @@ const BrainTumor = () => {
 
 
     return (
-        <div style={{
-            display: 'flex', justifyContent: 'center', alignItems: 'center', height: '70vh',
-            backgroundImage: 'url("https://wallpaperaccess.com/full/1871472.jpg")'
-            , backgroundSize: 'cover',
-            backgroundPosition: 'center',
-        }}>
-            <Form onSubmit={handleSubmit}>
-                <Form.Group className="mb-2 " controlId="formFirstName">
-                    <Form.Label style={{ color: "white" }}>First Name</Form.Label>
-                    <Form.Control type="text" placeholder="Enter first name" name="firstName" value={formData.firstName} onChange={handleInputChange} />
-                </Form.Group>
+        <>
+            <div style={{
+                display: 'flex', justifyContent: 'center', alignItems: 'center', height: '70vh'
+            }}>
+                <Form onSubmit={handleSubmit}>
+                    <Form.Group className="mb-2 " controlId="formFirstName">
+                        <Form.Label style={{ color: "white" }}>First Name</Form.Label>
+                        <Form.Control type="text" placeholder="Enter first name" name="firstName" value={formData.firstName} onChange={handleInputChange} />
+                    </Form.Group>
 
-                <Form.Group className="mb-2" controlId="formLastName">
-                    <Form.Label style={{ color: "white" }}>Last Name</Form.Label>
-                    <Form.Control type="text" placeholder="Enter last name" name="lastName" value={formData.lastName} onChange={handleInputChange} />
-                </Form.Group>
+                    <Form.Group className="mb-2" controlId="formLastName">
+                        <Form.Label style={{ color: "white" }}>Last Name</Form.Label>
+                        <Form.Control type="text" placeholder="Enter last name" name="lastName" value={formData.lastName} onChange={handleInputChange} />
+                    </Form.Group>
 
-                <Form.Group className="mb-2" controlId="formImage">
-                    <Form.Label style={{ color: "white" }}>Image</Form.Label>
-                    {/* <FileBase64 type='file' value={formData.file} multiple={false} onDone={(base64) => handleFileChange({ image: base64 })} /> */}
-                    <Form.Control type="file" onChange={handleFile} />
-                </Form.Group>
+                    <Form.Group className="mb-2" controlId="formImage">
+                        <Form.Label style={{ color: "white" }}>Image</Form.Label>
+                        {/* <FileBase64 type='file' value={formData.file} multiple={false} onDone={(base64) => handleFileChange({ image: base64 })} /> */}
+                        <Form.Control type="file" onChange={handleFile} />
+                    </Form.Group>
 
-                <Form.Group className="mb-2" controlId="formAge">
-                    <Form.Label style={{ color: "white" }}>Age</Form.Label>
-                    <Form.Control type="number" placeholder="Enter age" name="age" value={formData.age} onChange={handleInputChange} />
-                </Form.Group>
+                    <Form.Group className="mb-2" controlId="formAge">
+                        <Form.Label style={{ color: "white" }}>Age</Form.Label>
+                        <Form.Control type="number" placeholder="Enter age" name="age" value={formData.age} onChange={handleInputChange} />
+                    </Form.Group>
 
-                <Button className='m-2' variant="primary" type="submit">
-                    Submit
-                </Button>
+                    <Button className='m-2' variant="primary" type="submit" onClick={handleSubmit}>
+                        Submit
+                    </Button>
 
-                <Button className='m-2' variant="primary" type="submit" onClick={handleSubmitAndPrint}>
-                    Submit and Print
-                </Button>
-
-                {/* {result && (
-                    <div>
-                        <p>Class: {result.class}</p>
-                        <p>Confidence: {result.confidence}</p>
-                    </div>
-                )} */}
-            </Form>
-        </div>
+                    <Button className='m-2' variant="primary" type="submit" onClick={handleSubmitAndPrint}>
+                        Submit and Print
+                    </Button>
+                </Form>
+            </div>
+            {/* <div>
+                <Footer bgColor={'black'} />
+            </div> */}
+        </>
     );
 };
 

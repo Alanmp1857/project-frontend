@@ -1,6 +1,9 @@
 import React, { useState } from 'react';
 import { Form, Button } from 'react-bootstrap';
 import axios from 'axios';
+import Footer from './Footer';
+import image5 from '../assets/5.webp';
+import image7 from '../assets/7.jpg';
 
 const Alzheimer = () => {
     const [formData, setFormData] = useState({
@@ -74,54 +77,49 @@ const Alzheimer = () => {
         }
     };
 
-    function test() {
-        url = "https://www.google.de//images/branding/googlelogo/2x/googlelogo_color_272x92dp.png";
-        img = '<img src="' + url + '">';
-        popup = window.open();
-        popup.document.write(img);
-        popup.print();
-    }
+    // function test() {
+    //     url = "https://www.google.de//images/branding/googlelogo/2x/googlelogo_color_272x92dp.png";
+    //     img = '<img src="' + url + '">';
+    //     popup = window.open();
+    //     popup.document.write(img);
+    //     popup.print();
+    // }
 
     return (
-        <div style={{
-            display: 'flex', justifyContent: 'center', alignItems: 'center', height: '70vh',
-            backgroundImage: 'url("https://wallpaperaccess.com/full/1871472.jpg")'
-            , backgroundSize: 'cover',
-            backgroundPosition: 'center',
-        }}>
-            <Form onSubmit={handleSubmit}>
-                <Form.Group className="mb-2 " controlId="formFirstName">
-                    <Form.Label style={{ color: "white" }}>First Name</Form.Label>
-                    <Form.Control type="text" placeholder="Enter first name" name="firstName" value={formData.firstName} onChange={handleInputChange} />
-                </Form.Group>
+        <>
+            <div style={{
+                display: 'flex', justifyContent: 'center', alignItems: 'center', height: '70vh'
+            }}>
+                <Form onSubmit={handleSubmit}>
+                    <Form.Group className="mb-2 " controlId="formFirstName">
+                        <Form.Label style={{ color: "white" }}>First Name</Form.Label>
+                        <Form.Control type="text" placeholder="Enter first name" name="firstName" value={formData.firstName} onChange={handleInputChange} />
+                    </Form.Group>
 
-                <Form.Group className="mb-2" controlId="formLastName">
-                    <Form.Label style={{ color: "white" }}>Last Name</Form.Label>
-                    <Form.Control type="text" placeholder="Enter last name" name="lastName" value={formData.lastName} onChange={handleInputChange} />
-                </Form.Group>
+                    <Form.Group className="mb-2" controlId="formLastName">
+                        <Form.Label style={{ color: "white" }}>Last Name</Form.Label>
+                        <Form.Control type="text" placeholder="Enter last name" name="lastName" value={formData.lastName} onChange={handleInputChange} />
+                    </Form.Group>
 
-                <Form.Group className="mb-2" controlId="formImage">
-                    <Form.Label style={{ color: "white" }}>Image</Form.Label>
-                    <Form.Control type="file" onChange={handleFileChange} />
-                </Form.Group>
+                    <Form.Group className="mb-2" controlId="formImage">
+                        <Form.Label style={{ color: "white" }}>Image</Form.Label>
+                        <Form.Control type="file" onChange={handleFileChange} />
+                    </Form.Group>
 
-                <Form.Group className="mb-2" controlId="formAge">
-                    <Form.Label style={{ color: "white" }}>Age</Form.Label>
-                    <Form.Control type="number" placeholder="Enter age" name="age" value={formData.age} onChange={handleInputChange} />
-                </Form.Group>
+                    <Form.Group className="mb-2" controlId="formAge">
+                        <Form.Label style={{ color: "white" }}>Age</Form.Label>
+                        <Form.Control type="number" placeholder="Enter age" name="age" value={formData.age} onChange={handleInputChange} />
+                    </Form.Group>
 
-                <Button className='mb-2' variant="primary" type="submit" disabled={isLoading}>
-                    {isLoading ? 'Loading...' : 'Submit'}
-                </Button>
-
-                {/* {result && (
-                    <div>
-                        <p>Class: {result.class}</p>
-                        <p>Confidence: {result.confidence}</p>
-                    </div>
-                )} */}
-            </Form>
-        </div>
+                    <Button className='mb-2' variant="primary" type="submit" disabled={isLoading}>
+                        {isLoading ? 'Loading...' : 'Submit'}
+                    </Button>
+                </Form>
+            </div>
+            {/* <div>
+                <Footer />
+            </div> */}
+        </>
     );
 };
 

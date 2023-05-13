@@ -3,7 +3,7 @@ import React from 'react';
 const Footer = () => {
     return (
         <div>
-            <div className="blockcode" style={{ opacity: '0.5', backgroundColor: 'black' }} >
+            <div className="blockcode" style={{ opacity: '0.7', backgroundColor: 'black' }} >
                 <footer className="page-footer shadow">
                     <div className="d-flex flex-column mx-auto py-5" style={{ width: "80%" }}>
                         <div className="d-flex flex-wrap justify-content-between">

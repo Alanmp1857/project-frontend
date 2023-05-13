@@ -28,7 +28,7 @@ const BrainTumor = () => {
             //     }
             // })
             // console.log(response, event.target.files[0], formData)
-            console.log(image);
+            // console.log(image);
             const token = await getAccessTokenSilently();
             const resp = await axios.post(`http://localhost:3000/user/`, { username: user.nickname, image: image }, {
                 headers: {
@@ -38,7 +38,7 @@ const BrainTumor = () => {
             console.log(resp.data)
         };
         if (base64Image != null) handleFileChange(base64Image);
-        console.log(base64Image)
+        // console.log(base64Image)
     }, [base64Image])
 
 

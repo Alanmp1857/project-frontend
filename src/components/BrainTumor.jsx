@@ -87,18 +87,79 @@ const BrainTumor = () => {
 
             const newWindow = window.open('', '_blank', 'width=600,height=600');
             newWindow.document.write(`
-            <h1>Result</h1>
-            <p>Name: ${formData.firstName} ${formData.lastName}</p>
-            <p>Age: ${formData.age}</p>
-            <p>Tumor Present: ${(resultClass === 'no_tumor') ? 'No' : 'Yes'}</p>
-            <p>Class: ${resultClass}</p>
-            <p>Confidence: ${(confidence * 100).toFixed(2)}%</p>
-            <img
-                src="${URL.createObjectURL(formData.file)}"
-                alt="Selected file preview"
-            />
-          `);
-            // newWindow.print();
+            <style>
+                body {
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    min-height: 100vh;
+                    font-family: 'Inconsolata', monospace;
+                }
+                
+                .report-card {
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+                    text-align: center;
+                    padding: 20px;
+                    border: 2px solid black;
+                    border-radius: 10px;
+                    max-width: 600px;
+                }
+                
+                .report-card h1 {
+                    margin-bottom: 20px;
+                }
+                
+                .report-card table {
+                    margin-bottom: 20px;
+                }
+                
+                .report-card img {
+                    max-width: 200px;
+                    max-height: 200px;
+                }
+
+                .dark{
+                    font-weight: bold;
+                }
+                </style>
+
+                <div class="report-card">
+                <h1>Medical Report Card</h1>
+                
+                ${confidence >= 0.9 ? `
+                <table>
+                    <tr>
+                    <td class="dark">Name:</td>
+                    <td>${formData.firstName} ${formData.lastName}</td>
+                    </tr>
+                    <tr>
+                    <td class="dark">Age:</td>
+                    <td>${formData.age}</td>
+                    </tr>
+                    <tr>
+                    <td class="dark">Tumor Present:</td>
+                    <td>${(resultClass === 'no_tumor') ? 'No' : 'Yes'}</td>
+                    </tr>
+                    <tr>
+                    <td class="dark">Class:</td>
+                    <td>${resultClass}</td>
+                    </tr>
+                    <tr>
+                    <td class="dark">Confidence:</td>
+                    <td>${(confidence * 100).toFixed(2)}%</td>
+                    </tr>
+                </table>
+                <div>
+                    <p class="dark">Selected file preview:</p>
+                    <img src="${URL.createObjectURL(formData.file)}" alt="Selected file preview" />
+                </div>` : `<p>Try again or input appropriate image</p>`}
+                
+                </div>
+
+
+              `);
             newWindow.document.close();
         } catch (error) {
             console.error(error);
@@ -124,17 +185,77 @@ const BrainTumor = () => {
 
             const newWindow = window.open('', '_blank', 'width=600,height=600');
             newWindow.document.write(`
-            <h1>Result</h1>
-            <p>Name: ${formData.firstName} ${formData.lastName}</p>
-            <p>Age: ${formData.age}</p>
-            <p>Tumor Present: ${(resultClass === 'no_tumor') ? 'No' : 'Yes'}</p>
-            <p>Class: ${resultClass}</p>
-            <p>Confidence: ${(confidence * 100).toFixed(2)}%</p>
-            <img
-                src="${URL.createObjectURL(formData.file)}"
-                alt="Selected file preview"
-            />
-          `);
+            <style>
+            body {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                min-height: 100vh;
+                font-family: 'Inconsolata', monospace;
+            }
+            
+            .report-card {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+                padding: 20px;
+                border: 2px solid black;
+                border-radius: 10px;
+                max-width: 600px;
+            }
+            
+            .report-card h1 {
+                margin-bottom: 20px;
+            }
+            
+            .report-card table {
+                margin-bottom: 20px;
+            }
+            
+            .report-card img {
+                max-width: 200px;
+                max-height: 200px;
+            }
+
+            .dark{
+                font-weight: bold;
+            }
+            </style>
+
+            <div class="report-card">
+            <h1>Medical Report Card</h1>
+            
+            ${confidence >= 0.9 ? `
+            <table>
+                <tr>
+                <td class="dark">Name:</td>
+                <td>${formData.firstName} ${formData.lastName}</td>
+                </tr>
+                <tr>
+                <td class="dark">Age:</td>
+                <td>${formData.age}</td>
+                </tr>
+                <tr>
+                <td class="dark">Tumor Present:</td>
+                <td>${(resultClass === 'no_tumor') ? 'No' : 'Yes'}</td>
+                </tr>
+                <tr>
+                <td class="dark">Class:</td>
+                <td>${resultClass}</td>
+                </tr>
+                <tr>
+                <td class="dark">Confidence:</td>
+                <td>${(confidence * 100).toFixed(2)}%</td>
+                </tr>
+            </table>
+            <div>
+                <p class="dark">Selected file preview:</p>
+                <img src="${URL.createObjectURL(formData.file)}" alt="Selected file preview" />
+            </div>` : `<p>Try again or input appropriate image</p>`}
+            
+            </div>
+              `);
             newWindow.onload = () => {
                 setTimeout(() => {
                     newWindow.print();

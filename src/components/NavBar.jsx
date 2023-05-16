@@ -42,24 +42,19 @@ function NavBar({ loginWithPopup, logout, isAuthenticated, user }) {
         // setImage(resp.data.data.image)
         setRefresh(prev => prev + 1);
     }
-
-    // const dropdown = function () {
-    //     <h1>
-    //         <BasicButton />
-    //     </h1>
-    // }
-
     const handleDropdownClick = () => {
         setShowDropdown(!showDropdown);
     };
-
     // console.log(name)
 
     return (
-        <Navbar bg="dark" expand="lg" sticky="top" style={{ opacity: '0.9', backgroundColor: 'black' }}>
+        <Navbar bg="dark" expand="lg" sticky="top" style={{ opacity: '0.9', backgroundColor: 'black', height: '60px' }}>
             <Container fluid>
                 <Link style={{ textDecoration: "none" }} to="/">
-                    <Navbar.Brand className="text-white">NeuraLink</Navbar.Brand>
+                    <Navbar.Brand className="text-white" style={{ fontFamily: 'Noto Serif JP' }}>
+                        ニューラルリンク</Navbar.Brand>
+                    {/* <Navbar.Brand className="text-white" style={{ fontFamily: 'Noto Serif JP' }}>
+                        NeuraLink</Navbar.Brand> */}
                 </Link>
                 <Navbar.Toggle aria-controls="navbarScroll" />
                 <Navbar.Collapse id="navbarScroll" className="text-white">
@@ -82,22 +77,12 @@ function NavBar({ loginWithPopup, logout, isAuthenticated, user }) {
                                 >
                                     <Dropdown.ItemText>{name}</Dropdown.ItemText>
                                     <Dropdown.Divider />
-                                    <Dropdown.Item onClick={() => console.log("Option 1 clicked")}>History</Dropdown.Item>
-                                    <Dropdown.Item onClick={() => console.log("Option 2 clicked")}>{
-                                        <Button variant="outline-success" className="mb-3 mb-lg-0 me-lg-3" onClick={() => { logout(); localStorage.clear() }}>Logout</Button>}</Dropdown.Item>
+                                    {/* <Link to="/history" style={{ textDecoration: 'none' }}> <Dropdown.Item onClick={() => console.log("Option 1 clicked")}>History</Dropdown.Item></Link> */}
+                                    <Dropdown.Item onClick={() => console.log("Option 2 clicked")}>
+                                        <Button variant="outline-success" className="mb-3 mb-lg-0 me-lg-3" onClick={() => { logout(); localStorage.clear() }}>Logout</Button>
+                                    </Dropdown.Item>
                                 </DropdownButton>
                             </div>
-                            // <div className='text-white m-1'>
-                            //     <DropdownButton
-                            //         id={`dropdown-button-drop-start`}
-                            //         title={<img src={image} alt="" style={{ height: '30px', width: 'auto', borderRadius: '100%' }} />} variant="light" onClick={handleDropdownClick}>
-                            //         <Dropdown.ItemText>{name}</Dropdown.ItemText>
-                            //         <Dropdown.Divider />
-                            //         <Dropdown.Item onClick={() => console.log("Option 1 clicked")}>History</Dropdown.Item>
-                            //         <Dropdown.Item onClick={() => console.log("Option 2 clicked")}>{
-                            //             <Button variant="outline-success" className="mb-3 mb-lg-0 me-lg-3" onClick={() => { logout(); localStorage.clear() }}>Logout</Button>}</Dropdown.Item>
-                            //     </DropdownButton>
-                            // </div>
                             :
                             (<Button variant="outline-success" className="mb-3 mb-lg-0 me-lg-3" onClick={handleSignIn}>Sign In | Sign Up</Button>)
                         }

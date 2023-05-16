@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const Footer = () => {
     return (
@@ -16,7 +17,7 @@ const Footer = () => {
                                 </p>
                             </div>
                             <div>
-                                <p className="h5 mb-4" style={{ fontWeight: "600", color: "white" }}>Devwares</p>
+                                <p className="h5 mb-4" style={{ fontWeight: "600", color: "white" }}>Info</p>
                                 <ul className="p-0" style={{ listStyle: "none", cursor: "pointer" }}>
                                     <li className="my-2">
                                         <a className="text-white" href="/">About Us</a>
@@ -27,18 +28,18 @@ const Footer = () => {
                                 </ul>
                             </div>
                             <div>
-                                <p className="h5 mb-4" style={{ fontWeight: "600", color: "white" }}>Help</p>
+                                <p className="h5 mb-4" style={{ fontWeight: "600", color: "white" }}>Our Products</p>
                                 <ul className="p-0" style={{ listStyle: "none", cursor: "pointer" }}>
                                     <li className="my-2">
-                                        <a className="text-white" href="/">Sign Up</a>
+                                        <Link to="/Braintumor" className="text-white">Brain Tumor Detection</Link>
                                     </li>
                                     <li className="my-2">
-                                        <a className="text-white" href="/">Sign In</a>
+                                        <Link to="/Alzheimer" className="text-white">Alzheimer's Detection</Link>
                                     </li>
                                 </ul>
                             </div>
                             <div>
-                                <p className="h5 mb-4" style={{ fontWeight: "600", color: "white" }}>Help</p>
+                                <p className="h5 mb-4" style={{ fontWeight: "600", color: "white" }}>Access</p>
                                 <ul className="p-0" style={{ listStyle: "none", cursor: "pointer" }}>
                                     <li className="my-2">
                                         <a className="text-white" href="/">Sign Up</a>

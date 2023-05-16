@@ -58,17 +58,77 @@ const Alzheimer = () => {
             console.log(imageUrl, formData.file)
             const newWindow = window.open('', '_blank', 'width=600,height=600');
             newWindow.document.write(`
-            <h1>Result</h1>
-            <p>Name: ${formData.firstName} ${formData.lastName}</p>
-            <p>Age: ${formData.age}</p>
-            <p>Tumor Present: ${(resultClass === 'no_tumor') ? 'No' : 'Yes'}</p>
-            <p>Class: ${resultClass}</p>
-            <p>Confidence: ${(confidence * 100).toFixed(2)}%</p>
-            <img
-                src="${URL.createObjectURL(formData.file)}"
-                alt="Selected file preview"
-            />
-          `);
+                <style>
+                body {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                min-height: 100vh;
+                font-family: 'Inconsolata', monospace;
+                }
+                
+                .report-card {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+                padding: 20px;
+                border: 2px solid black;
+                border-radius: 10px;
+                max-width: 600px;
+                }
+                
+                .report - card h1 {
+                    margin-bottom: 20px;
+                }
+                
+                .report-card table {
+                margin-bottom: 20px;
+                }
+                
+                .report - card img {
+                max-width: 200px;
+                max-height: 200px;
+                }
+
+                .dark{
+                font-weight: bold;
+                }
+                </style>
+
+        <div class="report-card">
+        <h1>Medical Report Card</h1>
+
+        ${confidence >= 0.9 ? `
+                <table>
+                    <tr>
+                    <td class="dark">Name:</td>
+                    <td>${formData.firstName} ${formData.lastName}</td>
+                    </tr>
+                    <tr>
+                    <td class="dark">Age:</td>
+                    <td>${formData.age}</td>
+                    </tr>
+                    <tr>
+                    <td class="dark">Tumor Present:</td>
+                    <td>${(resultClass === 'Non_Demented') ? 'No' : 'Yes'}</td>
+                    </tr>
+                    <tr>
+                    <td class="dark">Class:</td>
+                    <td>${resultClass}</td>
+                    </tr>
+                    <tr>
+                    <td class="dark">Confidence:</td>
+                    <td>${(confidence * 100).toFixed(2)}%</td>
+                    </tr>
+                </table>
+                <div>
+                    <p class="dark">Selected file preview:</p>
+                    <img src="${URL.createObjectURL(formData.file)}" alt="Selected file preview" />
+                </div>` : `<p>Try again or input appropriate image</p>`}
+
+            </div>
+            `);
             newWindow.document.close();
         } catch (error) {
             console.error(error);
@@ -77,13 +137,109 @@ const Alzheimer = () => {
         }
     };
 
-    // function test() {
-    //     url = "https://www.google.de//images/branding/googlelogo/2x/googlelogo_color_272x92dp.png";
-    //     img = '<img src="' + url + '">';
-    //     popup = window.open();
-    //     popup.document.write(img);
-    //     popup.print();
-    // }
+    const handleSubmitAndPrint = async (event) => {
+        event.preventDefault();
+        setIsLoading(true);
+        try {
+            const formDataObj = new FormData();
+            formDataObj.append('file', formData.file);
+            formDataObj.append('firstName', formData.firstName);
+            formDataObj.append('lastName', formData.lastName);
+            formDataObj.append('age', formData.age);
+
+            const response = await axios.post('http://localhost:8001/alzheimer/predict', formDataObj);
+
+            const { class: resultClass, confidence, image } = response.data;
+            const imageUrl = `data: image / jpg; base64, ${image} `;
+
+            const newWindow = window.open('', '_blank', 'width=600,height=600');
+            newWindow.document.write(`
+                <style>
+                body {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                min-height: 100vh;
+                font-family: 'Inconsolata', monospace;
+            }
+                
+                .report-card {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+                padding: 20px;
+                border: 2px solid black;
+                border-radius: 10px;
+                max-width: 600px;
+            }
+                
+                .report-card h1 {
+                margin-bottom: 20px;
+            }
+                
+                .report-card table {
+                margin-bottom: 20px;
+            }
+                
+                .report-card img {
+                max-width: 200px;
+                max-height: 200px;
+            }
+
+                .dark{
+                font-weight: bold;
+            }
+            </style>
+
+        <div class="report-card">
+        <h1>Medical Report Card</h1>
+
+        ${confidence >= 0.9 ? `
+                <table>
+                    <tr>
+                    <td class="dark">Name:</td>
+                    <td>${formData.firstName} ${formData.lastName}</td>
+                    </tr>
+                    <tr>
+                    <td class="dark">Age:</td>
+                    <td>${formData.age}</td>
+                    </tr>
+                    <tr>
+                    <td class="dark">Tumor Present:</td>
+                    <td>${(resultClass === 'Non_Demented') ? 'No' : 'Yes'}</td>
+                    </tr>
+                    <tr>
+                    <td class="dark">Class:</td>
+                    <td>${resultClass}</td>
+                    </tr>
+                    <tr>
+                    <td class="dark">Confidence:</td>
+                    <td>${(confidence * 100).toFixed(2)}%</td>
+                    </tr>
+                </table>
+                <div>
+                    <p class="dark">Selected file preview:</p>
+                    <img src="${URL.createObjectURL(formData.file)}" alt="Selected file preview" />
+                </div>` : `<p>Try again or input appropriate image</p>`}
+
+            </div>
+
+            `);
+            newWindow.onload = () => {
+                setTimeout(() => {
+                    newWindow.print();
+                    newWindow.close();
+                }, 1000); // delay the print operation by 1 second
+            };
+
+            newWindow.document.close();
+        } catch (error) {
+            console.error(error);
+        } finally {
+            setIsLoading(false);
+        }
+    };
 
     return (
         <>
@@ -111,8 +267,12 @@ const Alzheimer = () => {
                         <Form.Control type="number" placeholder="Enter age" name="age" value={formData.age} onChange={handleInputChange} />
                     </Form.Group>
 
-                    <Button className='mb-2' variant="primary" type="submit" disabled={isLoading}>
-                        {isLoading ? 'Loading...' : 'Submit'}
+                    <Button className='m-2' variant="primary" type="submit" onClick={handleSubmit}>
+                        Submit
+                    </Button>
+
+                    <Button className='m-2' variant="primary" type="submit" onClick={handleSubmitAndPrint}>
+                        Submit and Print
                     </Button>
                 </Form>
             </div>

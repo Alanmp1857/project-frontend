@@ -16,6 +16,7 @@ import { useAuth0 } from '@auth0/auth0-react'
 import image6 from './assets/6.png';
 import image7 from './assets/7.jpg';
 import image8 from './assets/8.jpg';
+import image4 from './assets/4.jpg';
 import History from './components/History';
 
 

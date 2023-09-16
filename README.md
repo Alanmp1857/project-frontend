@@ -15,17 +15,17 @@ This project leverages the power of Deep Learning, FastAPI, and React to detect 
 - Data Privacy: We prioritize data privacy and security. Patient data is handled with care and is not stored beyond the duration of the session.
 
 # Getting Started
-- Prerequisites
-https://github.com/Alanmp1857/brain-tumor-detection
-https://github.com/Alanmp1857/alzheimer-detection
+# Prerequisites
+- https://github.com/Alanmp1857/brain-tumor-detection
+- https://github.com/Alanmp1857/alzheimer-detection
 
 # Images of the Project
-- Brain Tumor Detection and its Result
+# Brain Tumor Detection and its Result
 ![bt](https://github.com/Alanmp1857/project-frontend/assets/95167331/0c516c76-e274-4391-a676-0657e27856d8)
 
 ![bt_result](https://github.com/Alanmp1857/project-frontend/assets/95167331/20809732-42a3-476f-878a-271495e0c9cc)
 
-- Alzheimer's Detection and its Result
+# Alzheimer's Detection and its Result
 ![alzheimer](https://github.com/Alanmp1857/project-frontend/assets/95167331/9ea1a10e-2d51-47f8-822c-749470d0c62a)
 
 ![alz_result](https://github.com/Alanmp1857/project-frontend/assets/95167331/41bf636d-04a8-4f36-8da2-00a80ade1c69)

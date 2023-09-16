@@ -1,5 +1,7 @@
 # Brain Tumor Detection and Alzheimer's Detection using Deep Learning, FastAPI, and React
 
+![ui](https://github.com/Alanmp1857/project-frontend/assets/95167331/68a28368-d59d-4978-87b7-dd88c509c2a2)
+
 # Overview
 This project leverages the power of Deep Learning, FastAPI, and React to detect and classify brain tumors from medical imaging data. Brain tumors are a critical health concern, and early detection is crucial for effective treatment. Our integrated solution provides a user-friendly interface for medical professionals to upload MRI images, perform tumor detection, and receive accurate results in real-time.
 
